@@ -8,7 +8,7 @@
 # ChangeLog (Who,When,What):
 # RRoot,1.1.2030,Created started script
 # RRoot,1.1.2030,Added code to complete assignment 5
-# JDSmith,2.25.20,Modified code to complete assignment 6
+# JDSmith,2.25.20,Started to modify code to complete assignment 6
 # ---------------------------------------------------------------------------- #
 
 # Data ---------------------------------------------------------------------- #
@@ -45,16 +45,25 @@ class Processor:
 
     @staticmethod
     def add_data_to_list(task, priority, list_of_rows):
+        """ don't forget to put
+        something useful here - delete this out and PyCharm will help
+        """
         # TODO: Add Code Here!
         return list_of_rows, 'Success'
 
     @staticmethod
     def remove_data_from_list(task, list_of_rows):
+        """ don't forget to put
+        something useful here - delete this out and PyCharm will help
+        """
         # TODO: Add Code Here!
         return list_of_rows, 'Success'
 
     @staticmethod
     def write_data_to_file(file_name, list_of_rows):
+        """ don't forget to put
+        something useful here - delete this out and PyCharm will help
+        """
         # TODO: Add Code Here!
         return list_of_rows, 'Success'
 
@@ -121,11 +130,19 @@ class IO:
 
     @staticmethod
     def input_new_task_and_priority():
-        pass  # TODO: Add Code Here!
-        # return task, priority
+        """
+
+        :return: task and priority string from user
+        """
+         # TODO: Add Code Here!
+        task = input('task: ')
+        priority = input('priority: ')
 
     @staticmethod
     def input_task_to_remove():
+        """ don't forget to put
+        something useful here - delete this out and PyCharm will help
+        """
         pass  # TODO: Add Code Here!
         # return task
 
@@ -144,6 +161,7 @@ while(True):
     # Step 4 - Process user's menu choice
     if strChoice.strip() == '1':  # Add a new Task
         # TODO: Add Code Here
+        strTask, strPriority = IO.input_new_task_and_priority()
         IO.input_press_to_continue(strStatus)
         continue  # to show the menu
 
@@ -168,7 +186,7 @@ while(True):
             # TODO: Add Code Here!
             IO.input_press_to_continue(strStatus)
         else:
-            IO.input_press_to_continue("File Reload  Cancelled!")
+            IO.input_press_to_continue("File Reload Cancelled!")
         continue  # to show the menu
 
     elif strChoice == '5':  #  Exit Program
