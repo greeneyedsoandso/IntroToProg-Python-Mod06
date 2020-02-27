@@ -43,10 +43,14 @@ class Processor:
         file.close()
         return list_of_rows, 'Success'
 
-    @staticmethod
+    @staticmethod # 5
     def add_data_to_list(task, priority, list_of_rows):
-        """ don't forget to put
-        something useful here - delete this out and PyCharm will help
+        """
+        Appends rows to the list with dictionaries inside
+        :param task:
+        :param priority:
+        :param list_of_rows:
+        :return: rows in list, success message
         """
         # TODO: Add Code Here!
         list_of_rows.append({'Task': task, 'Priority': priority})
@@ -58,6 +62,9 @@ class Processor:
         something useful here - delete this out and PyCharm will help
         """
         # TODO: Add Code Here!
+        for row in list_of_rows:
+            if row['Task'].lower() == task.lower():
+                lstTable.remove(row)
         return list_of_rows, 'Success'
 
     @staticmethod
@@ -119,7 +126,7 @@ class IO:
         """
         return str(input(message)).strip().lower()
 
-    @staticmethod
+    @staticmethod  # 6
     def input_press_to_continue(optional_message=''):
         """ Pause program and show a message before continuing
 
@@ -129,7 +136,7 @@ class IO:
         print(optional_message)
         input('Press the [Enter] key to continue.')
 
-    @staticmethod #4
+    @staticmethod  # 4
     def input_new_task_and_priority():
         """
 
@@ -144,6 +151,8 @@ class IO:
         """ don't forget to put
         something useful here - delete this out and PyCharm will help
         """
+        task = input('Task to remove: ')
+        return task
         pass  # TODO: Add Code Here!
         # return task
 
@@ -151,6 +160,7 @@ class IO:
 
 # Step 1 - When the program starts, Load data from ToDoFile.txt.
 Processor.read_data_from_file(strFileName, lstTable)  # read file data
+
 
 # Step 2 - Display a menu of choices to the user
 while(True):
@@ -168,6 +178,8 @@ while(True):
 
     elif strChoice == '2':  # Remove an existing Task
         # TODO: Add Code Here
+        strTask = IO.input_task_to_remove()
+        Processor.remove_data_from_list(strTask, lstTable)
         IO.input_press_to_continue(strStatus)
         continue  # to show the menu
 
