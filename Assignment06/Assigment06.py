@@ -61,7 +61,6 @@ class Processor:
         """ don't forget to put
         something useful here - delete this out and PyCharm will help
         """
-        # TODO: Add Code Here!
         for row in list_of_rows:
             if row['Task'].lower() == task.lower():
                 lstTable.remove(row)
@@ -69,10 +68,16 @@ class Processor:
 
     @staticmethod
     def write_data_to_file(file_name, list_of_rows):
-        """ don't forget to put
-        something useful here - delete this out and PyCharm will help
         """
-        # TODO: Add Code Here!
+        writes data in memory into a file
+        :param file_name: the file name enclosed in quotes
+        :param list_of_rows: referring back to our table
+        :return: current contents
+        """
+        file = open(file_name, 'w')
+        for row in lstTable:
+            file.write(str(row['Task'] + ',' + str(row['Priority'] + '\n')))
+        file.close()
         return list_of_rows, 'Success'
 
 # Presentation (Input/Output)  -------------------------------------------- #
@@ -148,13 +153,12 @@ class IO:
 
     @staticmethod
     def input_task_to_remove():
-        """ don't forget to put
-        something useful here - delete this out and PyCharm will help
+        """
+        presents string and stores input
+        :return: the thing to be removed
         """
         task = input('Task to remove: ')
         return task
-        pass  # TODO: Add Code Here!
-        # return task
 
 # Main Body of Script  ------------------------------------------------------ #
 
@@ -177,7 +181,6 @@ while(True):
         continue  # to show the menu
 
     elif strChoice == '2':  # Remove an existing Task
-        # TODO: Add Code Here
         strTask = IO.input_task_to_remove()
         Processor.remove_data_from_list(strTask, lstTable)
         IO.input_press_to_continue(strStatus)
@@ -186,7 +189,7 @@ while(True):
     elif strChoice == '3':   # Save Data to File
         strChoice = IO.input_yes_no_choice("Save this data to file? (y/n) - ")
         if strChoice.lower() == "y":
-            # TODO: Add Code Here!
+            Processor.write_data_to_file('ToDoFile.txt', lstTable)
             IO.input_press_to_continue(strStatus)
         else:
             IO.input_press_to_continue("Save Cancelled!")
