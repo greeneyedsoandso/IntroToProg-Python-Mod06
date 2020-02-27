@@ -3,7 +3,7 @@
 # Title: Assignment 06
 # Description: Working with functions in a class,
 #              When the program starts, load each "row" of data
-#              in "ToDoToDoList.txt" into a python Dictionary.
+#              in "ToDoFile.txt" into a python Dictionary.
 #              Add the each dictionary "row" to a python list "table"
 # ChangeLog (Who,When,What):
 # RRoot,1.1.2030,Created started script
@@ -49,6 +49,7 @@ class Processor:
         something useful here - delete this out and PyCharm will help
         """
         # TODO: Add Code Here!
+        list_of_rows.append({'Task': task, 'Priority': priority})
         return list_of_rows, 'Success'
 
     @staticmethod
@@ -71,8 +72,8 @@ class Processor:
 class IO:
     """ Performs Input and Output tasks """
 
-    @staticmethod
-    def print_menu_Tasks():
+    @staticmethod # 2 this shows the menu
+    def print_menu_tasks():
         """  Display a menu of choices to the user
 
         :return: nothing
@@ -87,7 +88,7 @@ class IO:
         ''')
         print()  # Add an extra line for looks
 
-    @staticmethod
+    @staticmethod # 3 this lets you choose a menu item
     def input_menu_choice():
         """ Gets the menu choice from a user
 
@@ -97,8 +98,8 @@ class IO:
         print()  # Add an extra line for looks
         return choice
 
-    @staticmethod
-    def print_current_Tasks_in_list(list_of_rows):
+    @staticmethod  # 1 this is the stuff in the dictionary rows that are loaded in memory
+    def print_current_tasks_in_list(list_of_rows):
         """ Shows the current Tasks in the list of dictionaries rows
 
         :param list_of_rows: (list) of rows you want to display
@@ -128,15 +129,15 @@ class IO:
         print(optional_message)
         input('Press the [Enter] key to continue.')
 
-    @staticmethod
+    @staticmethod #4
     def input_new_task_and_priority():
         """
 
         :return: task and priority string from user
         """
-         # TODO: Add Code Here!
         task = input('task: ')
         priority = input('priority: ')
+        return task, priority
 
     @staticmethod
     def input_task_to_remove():
@@ -154,14 +155,14 @@ Processor.read_data_from_file(strFileName, lstTable)  # read file data
 # Step 2 - Display a menu of choices to the user
 while(True):
     # Step 3 Show current data
-    IO.print_current_Tasks_in_list(lstTable)  # Show current data in the list/table
-    IO.print_menu_Tasks()  # Shows menu
+    IO.print_current_tasks_in_list(lstTable)  # Show current data in the list/table
+    IO.print_menu_tasks()  # Shows menu
     strChoice = IO.input_menu_choice()  # Get menu option
     
     # Step 4 - Process user's menu choice
     if strChoice.strip() == '1':  # Add a new Task
-        # TODO: Add Code Here
         strTask, strPriority = IO.input_new_task_and_priority()
+        Processor.add_data_to_list(strTask, strPriority, lstTable)
         IO.input_press_to_continue(strStatus)
         continue  # to show the menu
 
