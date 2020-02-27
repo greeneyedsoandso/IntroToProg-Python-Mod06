@@ -9,6 +9,7 @@
 # RRoot,1.1.2030,Created started script
 # RRoot,1.1.2030,Added code to complete assignment 5
 # JDSmith,2.25.20,Started to modify code to complete assignment 6
+# JDSmith,2.26.20,Finished TO DOs and added docstrings
 # ---------------------------------------------------------------------------- #
 
 # Data ---------------------------------------------------------------------- #
@@ -24,15 +25,17 @@ strStatus = ""  # Captures the status of an processing functions
 
 # Processing  --------------------------------------------------------------- #
 class Processor:
-    """  Performs Processing tasks """
 
+    """
+    Performs processing tasks
+    """
     @staticmethod
     def read_data_from_file(file_name, list_of_rows):
         """ Reads data from a file into a list of dictionary rows
 
         :param file_name: (string) with name of file:
         :param list_of_rows: (list) you want filled with file data:
-        :return: (list) of dictionary rows
+        :return: (list) of dictionary rows:
         """
         list_of_rows.clear()  # clear current data
         file = open(file_name, "r")
@@ -46,11 +49,11 @@ class Processor:
     @staticmethod # 5
     def add_data_to_list(task, priority, list_of_rows):
         """
-        Appends rows to the list with dictionaries inside
-        :param task:
-        :param priority:
-        :param list_of_rows:
-        :return: rows in list, success message
+        Appends rows to the list of dictionary rows
+        :param task: value for key Task:
+        :param priority: value for key Priority:
+        :param list_of_rows: list where data should go:
+        :return: rows in list, success message:
         """
         # TODO: Add Code Here!
         list_of_rows.append({'Task': task, 'Priority': priority})
@@ -58,8 +61,11 @@ class Processor:
 
     @staticmethod
     def remove_data_from_list(task, list_of_rows):
-        """ don't forget to put
-        something useful here - delete this out and PyCharm will help
+        """
+        Deletes row if it matches input value
+        :param task: value for key Task:
+        :param list_of_rows: list data should be removed from:
+        :return:
         """
         for row in list_of_rows:
             if row['Task'].lower() == task.lower():
@@ -69,10 +75,10 @@ class Processor:
     @staticmethod
     def write_data_to_file(file_name, list_of_rows):
         """
-        writes data in memory into a file
-        :param file_name: the file name enclosed in quotes
-        :param list_of_rows: referring back to our table
-        :return: current contents
+        Writes data in memory into a file
+        :param file_name: the file name as a string:
+        :param list_of_rows: list of dictionary rows:
+        :return: current contents:
         """
         file = open(file_name, 'w')
         for row in lstTable:
@@ -144,17 +150,17 @@ class IO:
     @staticmethod  # 4
     def input_new_task_and_priority():
         """
-
-        :return: task and priority string from user
+        Gets new Task and Priority from user
+        :return: task and priority strings from user input
         """
-        task = input('task: ')
-        priority = input('priority: ')
+        task = input('Task: ')
+        priority = input('Priority: ')
         return task, priority
 
     @staticmethod
     def input_task_to_remove():
         """
-        presents string and stores input
+        Presents string and stores input
         :return: the thing to be removed
         """
         task = input('Task to remove: ')
@@ -164,7 +170,6 @@ class IO:
 
 # Step 1 - When the program starts, Load data from ToDoFile.txt.
 Processor.read_data_from_file(strFileName, lstTable)  # read file data
-
 
 # Step 2 - Display a menu of choices to the user
 while(True):
@@ -196,13 +201,13 @@ while(True):
         continue  # to show the menu
 
     elif strChoice == '4':  # Reload Data from File
-        print("Warning: Unsaved Data Will Be Lost!")
+        print("WARNING: Unsaved data will be lost!")
         strChoice = IO.input_yes_no_choice("Are you sure you want to reload data from file? (y/n) -  ")
         if strChoice.lower() == 'y':
-            # TODO: Add Code Here!
+            Processor.read_data_from_file('ToDoFile.txt', lstTable)
             IO.input_press_to_continue(strStatus)
         else:
-            IO.input_press_to_continue("File Reload Cancelled!")
+            IO.input_press_to_continue("File reload cancelled.")
         continue  # to show the menu
 
     elif strChoice == '5':  #  Exit Program
